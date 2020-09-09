@@ -12,7 +12,7 @@
 
 //       if(empty($name) || empty($email) || empty($NO) || empty($msg))
 //       {
-          $headers='location:.index.html?error';
+          $headers='location:.index.html?';
 //       }
 //       else
 //       {
@@ -20,8 +20,12 @@
 
         if(mail ($to, $subject, $message, $headers))
         {
-            header("location:index.html?success");
-        }        
+            echo "mail send";
+        }   
+        else{
+                echo "Mail not send";
+        }
+                 
 //        }
 //    }
 //     else
