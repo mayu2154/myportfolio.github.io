@@ -11,7 +11,7 @@
 
       if(empty($name) || empty($email) || empty($NO) || empty($msg))
       {
-          header('location:.index.php?error');
+          header('location:.index.html?error');
       }
       else
       {
@@ -19,12 +19,27 @@
 
         if(mail ($to, $subject, $msg, $headers))
         {
-            header("location:index.php?success");
+            header("location:index.html?success");
         }        
        }
    }
     else
     {
-        header('location:.index.php');
+        header('location:.index.html');
+    }
+
+
+
+
+    $msg = "";
+    if(isset($_GET['error']))
+    {
+         $msg = "Please Fill in the blanks ";
+         echo "<div class="alert alert-danger">".$msg."</div>"; 
+    }
+    if(isset($_GET['success']))
+    {
+         $msg = "Your Message has been sent ";
+         echo "<div class="alert alert-success">".$msg."</div>"; 
     }
 ?>
