@@ -1,12 +1,12 @@
 <?php
-if(isset($_POST['submit'])){
-    $name=$_POST ['name'];
-    $email=$_POST['email'];
-    $No=$_POST['no'];
-    $msg=$_POST['msg'];
+   if(isset($_POST['submit'])){
+      $name=$_POST ['name'];
+      $email=$_POST['email'];
+      $No=$_POST['no'];
+      $msg=$_POST['msg'];
 
-    $to='mayurinarkhede2154@gmail.com';
-    $subject="Form submission";
+      $to='mayurinarkhede2154@gmail.com';
+      $subject="Form submission";
 
 
     $message="Name: ".$name. "\n"."Phone: ".$phone."\n". "Wrote the following: "."\n\n".$msg;
@@ -28,5 +28,5 @@ if(isset($_POST['submit'])){
     //         mail($to,$email_subjec,$email_body,$headers);
     //         header("location:Main.html");
             
-
+    }
 ?>
