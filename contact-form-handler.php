@@ -79,9 +79,14 @@ $email_body="User name :$name.\n".
     $to="mayurinarkhede2154@gmail.com";
     $headers="From:$email_from\r\n";
     $headers="Reply-To:$visitor_email\r\n";
-     mail($to,$email_subject,$email_body,$headers);
-     header("location: index.html");
-            
+    if (mail($to,$email_subject,$email_body,$headers))
+    {
+        header("location: index.html?success");
+    }
+    else{
 
+        header("location: index.html?error");
+    }
+            
 ?>
 
