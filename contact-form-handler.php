@@ -1,5 +1,5 @@
-<?php
-//    if(isset($_POST['submit']))
+
+<!-- //    if(isset($_POST['submit']))
 //    {
 //       $name=$_POST ['name'];
 //       $email=$_POST['email'];
@@ -59,14 +59,16 @@
 //    }
 //    else{
 //        echo "Mail not send";
-//    }
+//    } -->
 
 
 
 
 <?php
+
+
 $name=$_POST ['name'];
-$visitor_email=$_POST'email'];
+$visitor_email=$_POST['email'];
 $Mobno=$_POST['no'];
 $email_from='mayurinarkhede2154@gmail.com';
 
@@ -83,4 +85,3 @@ $email_body="User name :$name.\n".
 
 ?>
 
-?> 
