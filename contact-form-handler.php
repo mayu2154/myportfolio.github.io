@@ -5,26 +5,26 @@
 //       $email=$_POST['email'];
 //       $No=$_POST['no'];
 
-      $message="Thank you!";
+    //   $message="Thank you!";
 
       
-      $subject="Form submission";
+    //   $subject="Form submission";
 
 //       if(empty($name) || empty($email) || empty($NO) || empty($msg))
 //       {
-          $headers='location:.index.html?';
+        //   $headers='location:.index.html?';
 //       }
 //       else
 //       {
-        $to='mayurinarkhede2154@gmail.com';
+        // $to='mayurinarkhede2154@gmail.com';
 
-        if(mail ($to, $subject, $message, $headers))
-        {
-            echo "mail send";
-        }   
-        else{
-                echo "Mail not send";
-        }
+        // if(mail ($to, $subject, $message, $headers))
+        // {
+        //     echo "mail send";
+        // }   
+        // else{
+        //         echo "Mail not send";
+        // }
                  
 //        }
 //    }
@@ -61,5 +61,26 @@
 //        echo "Mail not send";
 //    }
 
+
+
+
+<?php
+$name=$_POST ['name'];
+$visitor_email=$_POST'email'];
+$Mobno=$_POST['no'];
+$email_from='mayurinarkhede2154@gmail.com';
+
+$email_subjec="New form submission";
+$email_body="User name :$name.\n".
+            "User Email:$visitor_email.\n".
+            "user Mobno:$Mobno.\n";
+    $to="mayurinarkhede2154@gmail.com";
+    $headers="From:$email_from\r\n";
+    $headers="Reply-To:$visitor_email\r\n";
+     mail($to,$email_subjec,$email_body,$headers);
+     header("location:index.html");
+            
+
+?>
 
 ?> 
