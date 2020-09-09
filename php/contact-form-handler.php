@@ -1,17 +1,18 @@
 <?php
 if(isset($_POST['submit'])){
-    $text=$_POST ['name'];
+    $name=$_POST ['name'];
     $email=$_POST['email'];
     $No=$_POST['no'];
+    $msg=$_POST['msg'];
 
     $to='mayurinarkhede2154@gmail.com';
     $subject="Form submission";
 
 
-    $message="Name: ".$name. "\n" ."Phone: ".$phone. "\n". "Wrote the following: "."\n\n".$msg;
+    $message="Name: ".$name. "\n"."Phone: ".$phone."\n". "Wrote the following: "."\n\n".$msg;
     $headers="From: ".$email;
 
-    if(mail ($to,$subject,$message,$headers)){
+    if(mail ($to, $subject, $message, $headers)){
         echo"<h1> Thank you for contact me !"." ".$name.", </h1>";
     }
      else{

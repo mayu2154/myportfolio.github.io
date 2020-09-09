@@ -177,12 +177,13 @@
             <h2 class="section-title">Contact</h2>
 
             <div class="contact__container bd-grid">
-                <form action="./php/contact-form-handler.php" class="contact__form">
-                    Name: <input type="text"  name="name" laceholder="Name" class="contact__input">
-                    Email id: <input type="mail" name="email" placeholder="Email" class="contact__input">
-                    Mob No: <input type="No" name="no" placeholder="mobile No" class="contact__input">
+                <form action="./php/contact-form-handler.php" method="post" name="form" class="contact__form">
+                    Name: <input type="text"  name="name" placeholder="Name" class="contact__input" required>
+                    Email id: <input type="email" name="email" placeholder="Email" class="contact__input" required>
+                    Mob No: <input type="no" name="no" placeholder="mobile No" class="contact__input" required>
+                    Message: <textarea name="msg" class="contact__input" placeholder="Enter your message here...." required></textarea>
 
-                    <input type="button" name="submit" value="submit" class="contact__button button">
+                    <input type="submit" name="submit" value="send" class="contact__button button">
                 </form>
             </div>
         </section>
