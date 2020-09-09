@@ -1,60 +1,61 @@
 <?php
-//    if(isset($_POST['submit']))
-//    {
-//       $name=$_POST ['name'];
-//       $email=$_POST['email'];
-//       $No=$_POST['no'];
-//       $msg=$_POST['msg'];
+   if(isset($_POST['submit']))
+   {
+      $name=$_POST ['name'];
+      $email=$_POST['email'];
+      $No=$_POST['no'];
+
+      $message="Thank you!";
 
       
-//       $subject="Form submission";
+      $subject="Form submission";
 
-//       if(empty($name) || empty($email) || empty($NO) || empty($msg))
-//       {
-//           header('location:.index.php?error');
-//       }
-//       else
-//       {
-//         $to='mayurinarkhede2154@gmail.com';
+      if(empty($name) || empty($email) || empty($NO) || empty($msg))
+      {
+          header('location:.index.html?error');
+      }
+      else
+      {
+        $to='mayurinarkhede2154@gmail.com';
 
-//         if(mail ($to, $subject, $msg, $headers))
-//         {
-//             header("location:index.php?success");
-//         }        
-//        }
-//    }
-//     else
-//     {
-//         header('location:.index.php');
-//     }
+        if(mail ($to, $subject, $message, $headers))
+        {
+            header("location:index.html?success");
+        }        
+       }
+   }
+    else
+    {
+        header('location:.index.html');
+    }
     
 
-//     $msg = "";
-//     if(isset($_GET['error']))
-//     {
-//          $msg = "Please Fill in the blanks ";
-//          echo "<div class="alert alert-danger">".$msg."</div>"; 
-//     }
-//     if(isset($_GET['success']))
-//     {
-//          $msg = "Your Message has been sent ";
-//          echo "<div class="alert alert-success">".$msg."</div>"; 
-//     }
+    $message = "";
+    if(isset($_GET['error']))
+    {
+         $message = "Please Fill in the blanks ";
+         echo "<div class="alert alert-danger">".$message."</div>"; 
+    }
+    if(isset($_GET['success']))
+    {
+         $message = "Your Message has been sent ";
+         echo "<div class="alert alert-success">".$message."</div>"; 
+    }
 
 
-$to="mayurinarkhede2154@gmail.com";
+// $to="mayurinarkhede2154@gmail.com";
 
-$subject="Form submission";
+// $subject="Form submission";
 
-$message="Thank you!";
+// $message="Thank you!";
 
-$headers="From: mayurinarkhede2154@gmail.com";
-   if(mail($to, $subject, $message, $headers)){
-       echo "mail send";
-   }
-   else{
-       echo "Mail not send";
-   }
+// $headers="From: mayurinarkhede2154@gmail.com";
+//    if(mail($to, $subject, $message, $headers)){
+//        echo "mail send";
+//    }
+//    else{
+//        echo "Mail not send";
+//    }
 
 
 ?> 
