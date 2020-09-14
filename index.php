@@ -1,48 +1,7 @@
-<?php
-
-
-$result="";
-if(isset($_POST['submit'])){
-    require 'phpmailer/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
-
-    $mail->Host='smtp.gmail.com';
-    $mail->Port=587;
-    $mail->SMTPAuth=true;
-    $mail->SMTPSecure='tls';
-    $mail->Username='mayurinarkhede2154@gmail.com';
-    $mail->Password='mayuri2154';
-
-
-    $mail->setfrom($_POST['email'],$_POST['name']);
-    $mail->addReplayTo($_POST['email'],$_POST['name']);
-    $mail->addAddress('yugalmali198@gmail.com');
-
-
-    $mail->isHTMl(true);
-    $mail->Subject='Form Submission: ' .$_POST['subject'];
-    $mail->Body= '<h1 align=center>Name : '.$_POST['name']. '<br>Email: '$_POST['email']. '<br>Message: '$_POST['msg'].'</h1>';
-
-
-    if(!$mail->send()){
-        $result="Something went wrong. Please try again";
-    }
-    else{
-        $result="Thanks " .$_POST['name']. " for contacting us. we will get back to you soon!";
-        
-    }
-}
-
-
-?>
-
-
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./css/Gm.css">
@@ -52,10 +11,9 @@ if(isset($_POST['submit'])){
 
     <title>Portfolio website complete</title>
 </head>
-
 <body>
-    <!--===== HEADER =====-->
-    <header class="l-header">
+ <!--===== HEADER =====-->
+ <header class="l-header">
         <nav class="nav bd-grid">
             <div>
                 <a href="#" class="nav__logo">Mayuri Narkhede</a>
@@ -90,7 +48,7 @@ if(isset($_POST['submit'])){
             <div class="home__social">
                 <a href="https://www.linkedin.com/in/mayuri-n-1771341a9" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
                 <a href="https://instagram.com/mayuri_2111?igshid=fhijrlorc1h7" class="home__social-icon"><i class='bx bxl-instagram'></i></a>
-                <a href="https://github.com/mayuri5401" class="home__social-icon"><i class='bx bxl-github'></i></a>
+                <a href="https://github.com/mayu2154/myportfolio.github.io" class="home__social-icon"><i class='bx bxl-github'></i></a>
                 <a href="https://facebook.com/vanita.narkhede.3" class="home__social-icon"><i class='bx bxl-facebook'></i></a>
             </div>
 
@@ -211,26 +169,34 @@ if(isset($_POST['submit'])){
                 </div>
             </div>
         </section>
-
-        <!--===== CONTACT =====-->
-        <section class="contact section" id="contact">
-            <h2 class="section-title">Contact <?= $result; ?> </h2> 
-            
-            <div class="Contact__container bd-grid">
-                <form action="" method="post" name="form" class="contact__form">
-                    Name: <input type="text"  name="name" placeholder="Name" class="contact__input" required>
-                    Email id: <input type="email" name="email" placeholder="Email" class="contact__input" required>
-                    Mob No: <input type="no" name="no" placeholder="mobile No" class="contact__input" required>
-                    Message: <textarea name="msg" class="contact__input" placeholder="Enter your message here...." required></textarea>
-
-                    <input type="submit" name="submit" value="submit" class="contact__button button">
-                </form>
-            </div>
-        </section>
     </main>
 
+
+	
+    <section class="contact section" id="contact">
+            <h2 class="section-title">Contact </h2> 
+            <div class="Contact__container bd-grid">
+
+		<form id="myForm" class="contact__form">
+        
+            Name: <input id="name" type="text" placeholder="Enter Name" class="contact__input">
+			<br><br>
+
+			Email id: <input id="email" type="text" placeholder="Enter Email" class="contact__input">
+			<br><br>
+
+			Mob No: <input id="subject" type="text" placeholder=" Enter Mobile no." class="contact__input"> 
+			<br><br>
+
+			Message: <textarea id="body" rows="5" placeholder="Type Message..." class="contact__input"></textarea>
+			<br><br>
+
+			<button type="button" onclick="sendEmail()" value="Send An Email" class="contact__button button">Submit</button> 
+		</form>
+	</section>
+    
     <!--===== FOOTER =====-->
-    <footer class="footer">
+    <footer class="footer" id="myForm">
         <p class="footer__title">follow us </p>
         <div class="footer__social">
             <a href="https://facebook.com/vanita.narkhede.3" class="footer__icon"><i class='bx bxl-facebook'></i></a>
@@ -244,12 +210,47 @@ if(isset($_POST['submit'])){
         <p>&#169; 2020 copyright all right reserved</p>
     </footer>
 
-
     <!--===== SCROLL REVEAL =====-->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!--===== MAIN JS =====-->
     <script src="./js/mn.js"></script>
-</body>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+        function sendEmail() {
+            var name = $("#name");
+            var email = $("#email");
+            var subject = $("#subject");
+            var body = $("#body");
 
+            if (isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(subject) && isNotEmpty(body)) {
+                $.ajax({
+                   url: 'sendEmail.php',
+                   method: 'POST',
+                   dataType: 'json',
+                   data: {
+                       name: name.val(),
+                       email: email.val(),
+                       subject: subject.val(),
+                       body: body.val()
+                   }, success: function (response) {
+                        $('#myForm')[0].reset();
+                        $('.sent-notification').text("Message Sent Successfully.");
+                   }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else
+                caller.css('border', '');
+
+            return true;
+        }
+    </script>
+
+</body>
 </html>
